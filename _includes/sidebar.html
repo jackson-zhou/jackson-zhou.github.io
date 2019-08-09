@@ -16,14 +16,22 @@
     </ul>
 </div>
 {% endif %}
-<!--分类-->
+<!--标签
 <div class="sidebar well">
-    <h1> {{ trans.categories }} </h1>
+    <h1> {{ trans.tags }} </h1>
         {% assign sortedtags = site.tags | sort %}
         {% for tag in sortedtags %}
         <li>{{ tag[0] | capitalize }}</li> 
         {% endfor %}
-</div>
+</div>-->
+<!--分类-->
+<div class="sidebar well">
+        <h1> {{ trans.categories }} </h1>
+            {% assign sortedtags = site.categories | sort %}
+            {% for tag in sortedtags %}
+            <li>{{ tag[0] | capitalize }}</li> 
+            {% endfor %}
+    </div>
 <div class="sidebar well">
     <h1>{{ trans.recent_posts }}</h1>
     <ul>
