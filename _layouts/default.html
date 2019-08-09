@@ -1,36 +1,16 @@
-<!DOCTYPE html>
-<html>
-  　　<head>
-    　　　　<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    　　　　<title>{{ page.title }}</title>
-            <script src="{{ "/static/jquery-3.4.1.min.js" | prepend: site.baseurl }}"></script>
-            <link rel="stylesheet" href="{{ "/static/katex/katex.css" | prepend: site.baseurl }}">
-            <script src="{{ "/static/katex/katex.js" | prepend: site.baseurl }}"></script>
-            <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
-            <script>
-                renderMathInElement(document.body,
-               {
-                          delimiters: [
-                              {left: "$$", right: "$$", display: true},
-                              {left: "$", right: "$", display: false}
-                          ]
-                      }
-              );
-            </script>
-    　　</head>
-  　　<body>
-    　　　　{{ content }}
-            <script>
-              $("script[type='math/tex']").replaceWith(function() {
-                var tex = $(this).text();
-                return katex.renderToString(tex, {displayMode: false});
-              });
+{% include header.html %}
 
-              $("script[type='math/tex; mode=display']").replaceWith(function() {
-                  var tex = $(this).html();
-                  return katex.renderToString(tex.replace(/%.*/g, ''), {displayMode: true});
-              });
-            </script>
+<div class="wrap">
+    <div class="container container-left">
+        <div class="row">
+            <div class="col-md-3 hidden-xs">
+                {% include sidebar.html %}
+            </div>
+            <div class="col-md-9">
+                {{ content }}
+            </div>
+        </div>
+    </div>
 
-    　　</body>
-</html>
+    {% include footer.html %}
+</div>
