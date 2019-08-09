@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-08-09T14:14:45+08:00</updated><id>http://localhost:4000/feed.xml</id><entry><title type="html">具体数学笔记 第一章</title><link href="http://localhost:4000/2019/08/09/cm_chapter_1.html" rel="alternate" type="text/html" title="具体数学笔记 第一章" /><published>2019-08-09T00:00:00+08:00</published><updated>2019-08-09T00:00:00+08:00</updated><id>http://localhost:4000/2019/08/09/cm_chapter_1</id><content type="html" xml:base="http://localhost:4000/2019/08/09/cm_chapter_1.html">&lt;h3 id=&quot;第一章的目标是&quot;&gt;第一章的目标是&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;理解递归思想&lt;/li&gt;
+  &lt;li&gt;掌握递归问题的分析思路及方法&lt;/li&gt;
+  &lt;li&gt;掌握递归式及其封闭形式的求解方法&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;通过研究三个例子来得到对递归问题的感性认识。它们有两个共同的特点&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;他们都是数学家们一直反复研究的问题&lt;/li&gt;
+  &lt;li&gt;它们的解都使用了递归的概念，即将问题求解转化为相同问题的更小实例的求解方法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;汉诺塔&quot;&gt;汉诺塔&lt;/h4&gt;
+
+&lt;p&gt;在书中将会反复看到先研究小的情况大有裨益。关于小的情况的经验不仅能帮助我们发现一般的公式，还能提供一种便利的核查方法，看看我们是否犯下愚蠢的错误。
+&lt;strong&gt;引入适当的记号&lt;/strong&gt;，$Tn$记为将n个盘从一根桩柱移动到另一根桩柱所需要的最小移动次数。
+$T_1=1$
+$T_2=3$
+$T_0=0$
+转移n个盘子的一般思路:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;现将n-1个小的盘子转移到另一根桩柱上（需要: $ T_{n-1} $次移动）&lt;/li&gt;
+  &lt;li&gt;移动最大的盘（要求一次移动）&lt;/li&gt;
+  &lt;li&gt;把n-1个盘转移到最大的盘上（也需要$T_{n-1}$次移动. 因此最多需要移动$2T_{n-1} + 1次就能转移n个盘（其中n&amp;gt;0)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;由此可知$T_n \leqslant 2T_{n-1} + 1, n \gt 0.$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;同时，也没有更好的移动办法：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;当移动最大盘时，n-1最小的盘一定在一根桩柱上，而且至少用了$T_{n-1}$次移动来把这些盘子放在那根桩柱上。&lt;/li&gt;
+  &lt;li&gt;如果不注意，移动最大盘的次数可能会大于一次。&lt;/li&gt;
+  &lt;li&gt;最后一次移动最大的那个圆盘后，还必须把n-1个小的圆盘移回到最大的圆盘上面。从而$T_n \geqslant 2T_{n-1} + 1, n&amp;gt;0$&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;将前面两个不等式和n=0的平凡解结合在一起，可得：
+$T_0 = 0$
+$T_n = 2T_{n-1} + 1,(n&amp;gt;0)$
+&lt;strong&gt;注意，这个公司和已知$T_1=1以及T_2=3$一致&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;像这样的一组等式称为&lt;strong&gt;递归式&lt;/strong&gt;。它给出了一个边界值，以及一个用前面的值给出的一般值得方程。&lt;/p&gt;
+
+&lt;h4 id=&quot;在提到递归式求解时-引入了一个很重要的方法数学归纳法&quot;&gt;在提到递归式求解时， 引入了一个很重要的方法：数学归纳法。&lt;/h4&gt;
+&lt;p&gt;这里提到的其实是第二数学归纳法（强），书中写得不够易懂，它在《离散数学》中有详细介绍。
+递归求解有两种办法：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;猜出正确的解，然后后证明猜测是正确的。
+ 1.1 研究小的情况
+ 1.2 对有意义的量求出数学表达式并给出证明
+ 1.3 对数学表达式求出封闭形式，并给与证名。
+这里的封闭形指的是$T_n=2^n-1$&lt;/li&gt;
+  &lt;li&gt;分析引导。
+$T_0 + 1 = 1$
+$T_n + 1 = 2T_{n-1} +2$
+如果令$U_n = T_n+1$那么就有
+$U_0=1 $
+$U_n = 2U_{n-1},n\gt0$
+不必是天才就能发现这个递归式的解是$U_n = 2^n$.从而有$T_n=2^n-1$&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;平面上的直线&quot;&gt;平面上的直线&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;平面上n条直线所界定的区域最大个数$L_n$是多少？&lt;/strong&gt;
+依然是要研究小的情况：
+$L_0 = 1$
+$L_1 = 2$
+$L_2=4$
+通过研究小的情况可知：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;第$n(n\gt 0)$条直线，使区域增加k个的充要条件是它分割了K个旧区域。&lt;/li&gt;
+  &lt;li&gt;分割K个旧区域的充要条件是和已存在的直线相较于k-1个不同的点。
+$k \leqslant n$.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;$L_n \leqslant L_{n-1} + n, n&amp;gt;0 $
+这个仅是上面所说的数学表达式。
+对应的封闭表达式是:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;L_n = \frac{n(n+1)}{2} + 1, n\geqslant0&lt;/script&gt;
+
+&lt;p&gt;证明：&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;L_n = L_{n-1} + n = (\frac{(n-1)(n+1-1)}{2}+1) + n)&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;= \frac{n(n+1)}{2} + 1&lt;/script&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;约瑟夫问题&quot;&gt;约瑟夫问题。&lt;/h2&gt;
+
+&lt;p&gt;依然从研究小的情况开始&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;人数（n）&lt;/th&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;th&gt;5&lt;/th&gt;
+      &lt;th&gt;6&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;幸存者编号J(n)&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;可得数学表达式：
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\tag{1.8}
+\begin{aligned}
+J(1)&amp; = 1;\\ 
+J(2n)&amp; = 2J(n) -1;\\
+J(2n+1)&amp; = 2J(n) +1.\\
+\end{aligned} %]]&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;根据这个递归式，对很小的值做一张表
+| n| 1|2   3|4   5   6   7|8  9  10  11  12   13   14   15|16|
+|:—|:—|:—|:—|:—|:—|:—|
+|J(n) | 1|1   3|1     3   5   7|1 3   5  7    9   11  13   15 |  1|&lt;/p&gt;
+
+&lt;p&gt;看起来可以得到一个封闭形式：
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\tag{1.9} \\
+J(2^m+l) = 2l+1, m\geqslant0, 0\leqslant l&lt;2^m %]]&gt;&lt;/script&gt;
+注意，如果$2^m \leqslant n &amp;lt; 2^{m+1}$,则余下来的数$l=n-2^m$满足$0\leqslant l &amp;lt;2^{m+1} - 2^m = 2^m $&lt;/p&gt;
+
+&lt;p&gt;证明式中有用到了数学归纳法，如果对强归纳法不够熟悉，这一段看上去会很费劲。
+先证明偶数情况：
+如果m&amp;gt;0且$2^m+l=2n$, 那么$l$是偶数.
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+J(2^m + l) &amp;= 2J(2^{m-1} + \frac{l}{2}) -1 \\&amp;= 2(\frac{l}{2} + 1) -1 \\&amp;= 2l + 1
+\end{aligned} %]]&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;完整过程如下, 对1.9整理,可得：
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+J(2^m + l) &amp;=J(2*2^{m-1} + 2*\frac{l}{2}) \\&amp;= J[2(2^{m-1}+\frac{l}{2})]
+\end{aligned} %]]&gt;&lt;/script&gt;
+将1.8的偶数情况$J(2n) = 2J(n) -1$代入可得
+&lt;script type=&quot;math/tex&quot;&gt;\tag{推导1.0} \\ J[2(2^{m-1}+\frac{l}{2})] =  2J(2^{m-1}+\frac{l}{2}) -1&lt;/script&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在这里先中断一下,复习一下第二数学归纳法:
+    . 基础证明: 证明P(1)为真.
+    (2)归纳步骤: 要证明对于所有正整数k来说,蕴含式$[P(1)\wedge P(2)\wedge …\wedge P(k)]\rarr P(k+1)$为真. 即:假设P(1),P(2),…,P(k)为真, 可得P(k+1)也为真.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;回到我们的(推导1.0), 对于封闭公式$J(2^m+l) = 2l+1, n=2^m+l.$&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;当n取1时, m=0,l=0. 所以式(1.9的基础J(1) = 1成立—–&lt;strong&gt;基础证明&lt;/strong&gt;, 重点是m=0时,式子成立.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;归纳步骤:&lt;/strong&gt; 假设$J(2^{m-1}+l) =  2l+1$成立, 把$l$换成$\frac{l}{2}$, 也就是假设$J(2^{m-1}+\frac{l}{2})] =  2\frac{l}{2}+1 $成立.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;顺着推导1.0继续往下:
+$2J(2^{m-1}+\frac{l}{2}) -1=2(2\frac{l}{2}+1)-1 = 2l+1$
+故式子1.9在偶数情况下得证.
+理解这里的重点是理解第二数学归纳法. 每每看到这段时都要被中断一下.&lt;/p&gt;
+
+&lt;p&gt;奇数情况也类似.
+$2^m+l$是奇数,即是$2n+1$
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+2n+1 &amp;= 2^m+l\\
+2n &amp;= 2^m + l - 1\\
+n &amp;= 2^{m-1} + \frac {l-1}{2} 
+\end{aligned} %]]&gt;&lt;/script&gt;
+即&lt;script type=&quot;math/tex&quot;&gt;\tag{推导1.1}
+J(2^m+l) = 2J(2^{m-1} + \frac {l-1}{2})+1&lt;/script&gt;
+归纳假设$J(2^{m-1} + \frac {l-1}{2}) = 2\frac{l-1}{2} + 1$
+则可得:
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+J(2^m+l) &amp;= 2J(2^{m-1} + \frac {l-1}{2})+1\\
+&amp;=2*(2\frac{l-1}{2} + 1) +1\\
+&amp;=2(l-1+1) + 1\\
+&amp;=2l+1
+\end{aligned} %]]&gt;&lt;/script&gt;
+故式子1.9在奇数情况下得证.&lt;/p&gt;
+
+&lt;p&gt;所以式子1.9得证.&lt;/p&gt;
+
+&lt;h5 id=&quot;扩展一下成套方法&quot;&gt;扩展一下成套方法:&lt;/h5&gt;
+&lt;p&gt;假设有一种递归式:
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\tag{1.11}
+\begin{aligned}
+f(1)&amp;=\alpha;\\
+f(2n)&amp;= 2f(n) + \beta, n \geqslant1;\\
+f(2n+1)&amp;= 2f(n) + \gamma, n \geqslant1. \\
+\end{aligned} %]]&gt;&lt;/script&gt;
+让我们尝试给这样的递归式求出一个封闭形式.&lt;/p&gt;
+
+&lt;p&gt;还是一样,先从小的情况开始:&lt;/p&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\tag{1.12}&lt;/script&gt;
+&lt;img src=&quot;http://jacksonzhou.top/wp-content/uploads/2019/01/01915901ab22695a8e00670aacb77cf2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从表格中可以看到,如果把$f(n)$对$\alpha,\beta,\gamma$的依存关系分离开来,我们就能将它表示成:
+&lt;script type=&quot;math/tex&quot;&gt;\tag{1.13}
+f(n) = A(n)\alpha + B(n)\beta + C(n)\gamma&lt;/script&gt;
+结合表格1.12, 可以猜出:
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\tag{1.14A}
+\begin{aligned}
+A(n) &amp;= 2^m; \\
+B(n) &amp;= 2^m - 1 - l\\
+C(n) &amp;= l \\
+n=2^m+l , 0\leqslant l &lt; 2^m,(n\geqslant1)
+\end{aligned} %]]&gt;&lt;/script&gt;
+步伐慢一点,整理一下.现在我们能确定的只有1.11,它是我们设想出来的一种递归式
+我们假设它的解是:
+&lt;script type=&quot;math/tex&quot;&gt;\tag{1.14B}f(n) = 2^m\alpha + (2^m-l-1)\beta + l\gamma&lt;/script&gt;
+但是到现在为止,还只是假设而已.  —-&amp;gt; 1.14是否成立还需要进一步证明.
+还有,这个式子的封闭形式只和$A(n),B(n),C(n)$有关,和$\alpha,\beta\,\gamma$无关.
+也就是说,无论$\alpha,\beta\,\gamma$取什么值,都不会影响$A(n),B(n),C(n)$.&lt;/p&gt;
+
+&lt;p&gt;很神奇吧, 这个是我读到这里时一直拐不过弯的点. 从猜测来源,表1.12中可以看到这一点,&lt;strong&gt;&amp;lt;font color=scarlet&amp;gt; $A(n),B(n),C(n)$  和$\alpha,\beta,\gamma$无关&amp;lt;/font&amp;gt;&lt;/strong&gt;.待证明的式子(1.14A)也是这样体现的.
+所以我们可以让$\alpha=1, \beta=\gamma=0$.
+这样(1.11)就变成了
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+f(1)&amp;=1\\
+f(2n)&amp;= 2f(n), n\geqslant 1;\\
+f(2n+1)&amp;= 2f(n), n\geqslant 1.  \\
+n=2^m+l , 0\leqslant l &lt; 2^m,(n\geqslant1)
+\end{aligned} %]]&gt;&lt;/script&gt;
+封闭形式就变成了
+$f(n) = A(n)$
+再代入上式,得:
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+f(1)&amp;=1\\
+f(2n)&amp;= 2A(n), n\geqslant 1;\\
+f(2n+1)&amp;= 2A(n), n\geqslant 1.  \\
+n=2^m+l , 0\leqslant l &lt; 2^m,(n\geqslant1)
+\end{aligned} %]]&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;现在可以开始证明$A(n) = 2^m$, 也就是$A(2^m+l) = 2^m$了. 
+还是用归纳法:&lt;br /&gt;
+ 1.1 基础:
+当n =1时, m = 0, l = 0;
+$f(1) = 2^0 + 0 = 1$ 
+ 1.2 归纳, 
+    假设 $2^{m-1}+l$是偶数&lt;br /&gt;
+    假设$A(2^{m}+l) = 2^{m}$
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+左边:
+f(2n) &amp;= f \Bigl( 2*(2^m+l)\Bigr)\\
+&amp;=f(2^{m+1} + 2l)\\
+f(2^{m+1} + 2l)&amp;=2A(n)\\
+ &amp;=2A(2^m+l)\\
+ &amp;=2*2^m\\
+ &amp;=2^{m+1}\\
+\end{aligned} %]]&gt;&lt;/script&gt;
+    假设 $2^{m-1}+l$是奇数:
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+  左边:
+f(2n+1) &amp;= f \Bigl( 2*(2^m+l)\Bigr)\\
+&amp;=f(2^{m+1} + 2l)\\
+f(2^{m+1} + 2l)&amp;=2A(n)\\
+ &amp;=2A(2^m+l)\\
+ &amp;=2*2^m\\
+ &amp;=2^{m+1}\\
+\end{aligned} %]]&gt;&lt;/script&gt;&lt;br /&gt;
+故:$A(n) = 2^m$&lt;/li&gt;
+  &lt;li&gt;接下来&amp;lt;font color=red&amp;gt;不基于&amp;lt;/font&amp;gt;刚才的计算, 重新审视一下(1.11)和(1.13).
+ 1.1 如果我们让$f(n)=1$
+       则对于(1.11)
+ &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+f(1)&amp;=\alpha \\
+&amp;=1;\\
+可得:\alpha=1\\
+f(2n)&amp;= 2f(n) + \beta\\
+&amp;=2*1+\beta\\
+&amp;=1;\\
+可得:\beta=-1\\
+f(2n+1)&amp;= 2f(n) + \gamma\\
+&amp;=2*1+\gamma\\
+&amp;=1;\\
+可得:\gamma=-1
+\end{aligned} %]]&gt;&lt;/script&gt;
+      将$f(n)=1, \alpha=1,\beta=-1,\gamma=-1$代入方程(1.13),可得:
+            &amp;lt;font color=red&amp;gt; $A(n) - B(n) - C(n)=1$&amp;lt;/font&amp;gt;
+ 1.2 如果我们让$f(n) = n$
+      则对于(1.11)
+ &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+f(1)&amp;=1;\\
+可得:\alpha=1\\
+f(2n)&amp;= 2f(n) + \beta\\
+&amp;=2n+\beta\\
+可得:\beta=0\\
+f(2n+1)&amp;= 2f(n) + \gamma\\
+&amp;=2n+\gamma\\
+可得:\gamma=1
+\end{aligned} %]]&gt;&lt;/script&gt;
+      将$f(n)=1, \alpha=1,\beta=-1,\gamma=-1$代入方程(1.13),可得:
+            &amp;lt;font color=red&amp;gt; $A(n) + 0*B(n) + C(n)=n$&amp;lt;/font&amp;gt;&lt;/li&gt;
+  &lt;li&gt;联立方程组:
+&lt;script type=&quot;math/tex&quot;&gt;\begin{cases}
+A(n) = 2^m\\
+A(n) - B(n) - C(n)=1\\
+A(n)  + C(n)=n
+\end{cases}&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+可得 C(n) &amp;= n-A(n) \\
+&amp;= n-2^m.\\
+\because n&amp;= 2^m + l \\
+l&amp;=n-2^m\\
+\therefore C(n)&amp;=l
+\end{aligned} %]]&gt;&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+B(n) &amp;= A(n) -c(n) -1\\
+&amp;=2^m -l -1
+\end{aligned} %]]&gt;&lt;/script&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&amp;lt;font color=red&amp;gt;故: (1.14)得证&amp;lt;/font&amp;gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">第一章的目标是 理解递归思想 掌握递归问题的分析思路及方法 掌握递归式及其封闭形式的求解方法</summary></entry><entry><title type="html">你好，世界</title><link href="http://localhost:4000/2019/08/08/helo-world.html" rel="alternate" type="text/html" title="你好，世界" /><published>2019-08-08T00:00:00+08:00</published><updated>2019-08-08T00:00:00+08:00</updated><id>http://localhost:4000/2019/08/08/helo-world</id><content type="html" xml:base="http://localhost:4000/2019/08/08/helo-world.html">&lt;h2&gt;你好，世界&lt;/h2&gt;
+&lt;p&gt;我的 $ \int u \frac{dv}{dx}\,dx=uv-\int \frac{du}{dx}v\,dx $ 第一篇文章&lt;/p&gt;
+
+&lt;p&gt;我的&lt;script type=&quot;math/tex&quot;&gt;\int u \frac{dv}{dx}\,dx=uv-\int \frac{du}{dx}v\,dx&lt;/script&gt;第一篇文章&lt;br /&gt;
+AAA &lt;script type=&quot;math/tex&quot;&gt;\alpha&lt;/script&gt; AA&lt;br /&gt;
+AAA $\alpha$ AA&lt;br /&gt;
+BB $\alpha$&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\int u \frac{dv}{dx}\,dx=uv-\int \frac{du}{dx}v\,dx&lt;/script&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{aligned}
+\dot{x} &amp; = \sigma(y-x) \\
+\dot{y} &amp; = \rho x - y - xz \\
+\dot{z} &amp; = -\beta z + xy
+\end{aligned} %]]&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;p&gt;08 Aug 2019&lt;/p&gt;</content><author><name></name></author><summary type="html">你好，世界 我的 $ \int u \frac{dv}{dx}\,dx=uv-\int \frac{du}{dx}v\,dx $ 第一篇文章</summary></entry></feed>

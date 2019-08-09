@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+  　　<head>
+    　　　　<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    　　　　<title>具体数学笔记 第一章</title>
+            <script src="/static/jquery-3.4.1.min.js"></script>
+            <link rel="stylesheet" href="/static/katex/katex.css">
+            <script src="/static/katex/katex.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
+            <script>
+                renderMathInElement(document.body,
+               {
+                          delimiters: [
+                              {left: "$$", right: "$$", display: true},
+                              {left: "$", right: "$", display: false}
+                          ]
+                      }
+              );
+            </script>
+    　　</head>
+  　　<body>
+    　　　　<h3 id="第一章的目标是">第一章的目标是</h3>
+<ol>
+  <li>理解递归思想</li>
+  <li>掌握递归问题的分析思路及方法</li>
+  <li>掌握递归式及其封闭形式的求解方法</li>
+</ol>
+
+<p><strong>通过研究三个例子来得到对递归问题的感性认识。它们有两个共同的特点</strong>：</p>
+<ul>
+  <li>他们都是数学家们一直反复研究的问题</li>
+  <li>它们的解都使用了递归的概念，即将问题求解转化为相同问题的更小实例的求解方法</li>
+</ul>
+
+<h4 id="汉诺塔">汉诺塔</h4>
+
+<p>在书中将会反复看到先研究小的情况大有裨益。关于小的情况的经验不仅能帮助我们发现一般的公式，还能提供一种便利的核查方法，看看我们是否犯下愚蠢的错误。
+<strong>引入适当的记号</strong>，$Tn$记为将n个盘从一根桩柱移动到另一根桩柱所需要的最小移动次数。
+$T_1=1$
+$T_2=3$
+$T_0=0$
+转移n个盘子的一般思路:</p>
+<ol>
+  <li>现将n-1个小的盘子转移到另一根桩柱上（需要: $ T_{n-1} $次移动）</li>
+  <li>移动最大的盘（要求一次移动）</li>
+  <li>把n-1个盘转移到最大的盘上（也需要$T_{n-1}$次移动. 因此最多需要移动$2T_{n-1} + 1次就能转移n个盘（其中n&gt;0)</li>
+</ol>
+
+<ul>
+  <li>由此可知$T_n \leqslant 2T_{n-1} + 1, n \gt 0.$</li>
+</ul>
+
+<p>同时，也没有更好的移动办法：</p>
+
+<ol>
+  <li>当移动最大盘时，n-1最小的盘一定在一根桩柱上，而且至少用了$T_{n-1}$次移动来把这些盘子放在那根桩柱上。</li>
+  <li>如果不注意，移动最大盘的次数可能会大于一次。</li>
+  <li>最后一次移动最大的那个圆盘后，还必须把n-1个小的圆盘移回到最大的圆盘上面。从而$T_n \geqslant 2T_{n-1} + 1, n&gt;0$</li>
+</ol>
+
+<p>将前面两个不等式和n=0的平凡解结合在一起，可得：
+$T_0 = 0$
+$T_n = 2T_{n-1} + 1,(n&gt;0)$
+<strong>注意，这个公司和已知$T_1=1以及T_2=3$一致</strong></p>
+
+<p>像这样的一组等式称为<strong>递归式</strong>。它给出了一个边界值，以及一个用前面的值给出的一般值得方程。</p>
+
+<h4 id="在提到递归式求解时-引入了一个很重要的方法数学归纳法">在提到递归式求解时， 引入了一个很重要的方法：数学归纳法。</h4>
+<p>这里提到的其实是第二数学归纳法（强），书中写得不够易懂，它在《离散数学》中有详细介绍。
+递归求解有两种办法：</p>
+<ol>
+  <li>猜出正确的解，然后后证明猜测是正确的。
+ 1.1 研究小的情况
+ 1.2 对有意义的量求出数学表达式并给出证明
+ 1.3 对数学表达式求出封闭形式，并给与证名。
+这里的封闭形指的是$T_n=2^n-1$</li>
+  <li>分析引导。
+$T_0 + 1 = 1$
+$T_n + 1 = 2T_{n-1} +2$
+如果令$U_n = T_n+1$那么就有
+$U_0=1 $
+$U_n = 2U_{n-1},n\gt0$
+不必是天才就能发现这个递归式的解是$U_n = 2^n$.从而有$T_n=2^n-1$</li>
+</ol>
+
+<h4 id="平面上的直线">平面上的直线</h4>
+<p><strong>平面上n条直线所界定的区域最大个数$L_n$是多少？</strong>
+依然是要研究小的情况：
+$L_0 = 1$
+$L_1 = 2$
+$L_2=4$
+通过研究小的情况可知：</p>
+<ol>
+  <li>第$n(n\gt 0)$条直线，使区域增加k个的充要条件是它分割了K个旧区域。</li>
+  <li>分割K个旧区域的充要条件是和已存在的直线相较于k-1个不同的点。
+$k \leqslant n$.</li>
+</ol>
+
+<p>$L_n \leqslant L_{n-1} + n, n&gt;0 $
+这个仅是上面所说的数学表达式。
+对应的封闭表达式是:</p>
+
+<script type="math/tex; mode=display">L_n = \frac{n(n+1)}{2} + 1, n\geqslant0</script>
+
+<p>证明：</p>
+
+<p><script type="math/tex">L_n = L_{n-1} + n = (\frac{(n-1)(n+1-1)}{2}+1) + n)</script>
+<script type="math/tex">= \frac{n(n+1)}{2} + 1</script></p>
+
+<h2 id="约瑟夫问题">约瑟夫问题。</h2>
+
+<p>依然从研究小的情况开始</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>人数（n）</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>幸存者编号J(n)</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>可得数学表达式：
+<script type="math/tex">% <![CDATA[
+\tag{1.8}
+\begin{aligned}
+J(1)& = 1;\\ 
+J(2n)& = 2J(n) -1;\\
+J(2n+1)& = 2J(n) +1.\\
+\end{aligned} %]]></script></p>
+
+<p>根据这个递归式，对很小的值做一张表
+| n| 1|2   3|4   5   6   7|8  9  10  11  12   13   14   15|16|
+|:—|:—|:—|:—|:—|:—|:—|
+|J(n) | 1|1   3|1     3   5   7|1 3   5  7    9   11  13   15 |  1|</p>
+
+<p>看起来可以得到一个封闭形式：
+<script type="math/tex">% <![CDATA[
+\tag{1.9} \\
+J(2^m+l) = 2l+1, m\geqslant0, 0\leqslant l<2^m %]]></script>
+注意，如果$2^m \leqslant n &lt; 2^{m+1}$,则余下来的数$l=n-2^m$满足$0\leqslant l &lt;2^{m+1} - 2^m = 2^m $</p>
+
+<p>证明式中有用到了数学归纳法，如果对强归纳法不够熟悉，这一段看上去会很费劲。
+先证明偶数情况：
+如果m&gt;0且$2^m+l=2n$, 那么$l$是偶数.
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+J(2^m + l) &= 2J(2^{m-1} + \frac{l}{2}) -1 \\&= 2(\frac{l}{2} + 1) -1 \\&= 2l + 1
+\end{aligned} %]]></script></p>
+
+<p>完整过程如下, 对1.9整理,可得：
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+J(2^m + l) &=J(2*2^{m-1} + 2*\frac{l}{2}) \\&= J[2(2^{m-1}+\frac{l}{2})]
+\end{aligned} %]]></script>
+将1.8的偶数情况$J(2n) = 2J(n) -1$代入可得
+<script type="math/tex">\tag{推导1.0} \\ J[2(2^{m-1}+\frac{l}{2})] =  2J(2^{m-1}+\frac{l}{2}) -1</script></p>
+
+<ul>
+  <li>在这里先中断一下,复习一下第二数学归纳法:
+    . 基础证明: 证明P(1)为真.
+    (2)归纳步骤: 要证明对于所有正整数k来说,蕴含式$[P(1)\wedge P(2)\wedge …\wedge P(k)]\rarr P(k+1)$为真. 即:假设P(1),P(2),…,P(k)为真, 可得P(k+1)也为真.</li>
+</ul>
+
+<p>回到我们的(推导1.0), 对于封闭公式$J(2^m+l) = 2l+1, n=2^m+l.$</p>
+<ol>
+  <li>当n取1时, m=0,l=0. 所以式(1.9的基础J(1) = 1成立—–<strong>基础证明</strong>, 重点是m=0时,式子成立.</li>
+  <li><strong>归纳步骤:</strong> 假设$J(2^{m-1}+l) =  2l+1$成立, 把$l$换成$\frac{l}{2}$, 也就是假设$J(2^{m-1}+\frac{l}{2})] =  2\frac{l}{2}+1 $成立.</li>
+</ol>
+
+<p>顺着推导1.0继续往下:
+$2J(2^{m-1}+\frac{l}{2}) -1=2(2\frac{l}{2}+1)-1 = 2l+1$
+故式子1.9在偶数情况下得证.
+理解这里的重点是理解第二数学归纳法. 每每看到这段时都要被中断一下.</p>
+
+<p>奇数情况也类似.
+$2^m+l$是奇数,即是$2n+1$
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+2n+1 &= 2^m+l\\
+2n &= 2^m + l - 1\\
+n &= 2^{m-1} + \frac {l-1}{2} 
+\end{aligned} %]]></script>
+即<script type="math/tex">\tag{推导1.1}
+J(2^m+l) = 2J(2^{m-1} + \frac {l-1}{2})+1</script>
+归纳假设$J(2^{m-1} + \frac {l-1}{2}) = 2\frac{l-1}{2} + 1$
+则可得:
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+J(2^m+l) &= 2J(2^{m-1} + \frac {l-1}{2})+1\\
+&=2*(2\frac{l-1}{2} + 1) +1\\
+&=2(l-1+1) + 1\\
+&=2l+1
+\end{aligned} %]]></script>
+故式子1.9在奇数情况下得证.</p>
+
+<p>所以式子1.9得证.</p>
+
+<h5 id="扩展一下成套方法">扩展一下成套方法:</h5>
+<p>假设有一种递归式:
+<script type="math/tex">% <![CDATA[
+\tag{1.11}
+\begin{aligned}
+f(1)&=\alpha;\\
+f(2n)&= 2f(n) + \beta, n \geqslant1;\\
+f(2n+1)&= 2f(n) + \gamma, n \geqslant1. \\
+\end{aligned} %]]></script>
+让我们尝试给这样的递归式求出一个封闭形式.</p>
+
+<p>还是一样,先从小的情况开始:</p>
+
+<p><script type="math/tex">\tag{1.12}</script>
+<img src="http://jacksonzhou.top/wp-content/uploads/2019/01/01915901ab22695a8e00670aacb77cf2.png" alt="" /></p>
+
+<p>从表格中可以看到,如果把$f(n)$对$\alpha,\beta,\gamma$的依存关系分离开来,我们就能将它表示成:
+<script type="math/tex">\tag{1.13}
+f(n) = A(n)\alpha + B(n)\beta + C(n)\gamma</script>
+结合表格1.12, 可以猜出:
+<script type="math/tex">% <![CDATA[
+\tag{1.14A}
+\begin{aligned}
+A(n) &= 2^m; \\
+B(n) &= 2^m - 1 - l\\
+C(n) &= l \\
+n=2^m+l , 0\leqslant l < 2^m,(n\geqslant1)
+\end{aligned} %]]></script>
+步伐慢一点,整理一下.现在我们能确定的只有1.11,它是我们设想出来的一种递归式
+我们假设它的解是:
+<script type="math/tex">\tag{1.14B}f(n) = 2^m\alpha + (2^m-l-1)\beta + l\gamma</script>
+但是到现在为止,还只是假设而已.  —-&gt; 1.14是否成立还需要进一步证明.
+还有,这个式子的封闭形式只和$A(n),B(n),C(n)$有关,和$\alpha,\beta\,\gamma$无关.
+也就是说,无论$\alpha,\beta\,\gamma$取什么值,都不会影响$A(n),B(n),C(n)$.</p>
+
+<p>很神奇吧, 这个是我读到这里时一直拐不过弯的点. 从猜测来源,表1.12中可以看到这一点,<strong>&lt;font color=scarlet&gt; $A(n),B(n),C(n)$  和$\alpha,\beta,\gamma$无关&lt;/font&gt;</strong>.待证明的式子(1.14A)也是这样体现的.
+所以我们可以让$\alpha=1, \beta=\gamma=0$.
+这样(1.11)就变成了
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+f(1)&=1\\
+f(2n)&= 2f(n), n\geqslant 1;\\
+f(2n+1)&= 2f(n), n\geqslant 1.  \\
+n=2^m+l , 0\leqslant l < 2^m,(n\geqslant1)
+\end{aligned} %]]></script>
+封闭形式就变成了
+$f(n) = A(n)$
+再代入上式,得:
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+f(1)&=1\\
+f(2n)&= 2A(n), n\geqslant 1;\\
+f(2n+1)&= 2A(n), n\geqslant 1.  \\
+n=2^m+l , 0\leqslant l < 2^m,(n\geqslant1)
+\end{aligned} %]]></script></p>
+<ol>
+  <li>现在可以开始证明$A(n) = 2^m$, 也就是$A(2^m+l) = 2^m$了. 
+还是用归纳法:<br />
+ 1.1 基础:
+当n =1时, m = 0, l = 0;
+$f(1) = 2^0 + 0 = 1$ 
+ 1.2 归纳, 
+    假设 $2^{m-1}+l$是偶数<br />
+    假设$A(2^{m}+l) = 2^{m}$
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+左边:
+f(2n) &= f \Bigl( 2*(2^m+l)\Bigr)\\
+&=f(2^{m+1} + 2l)\\
+f(2^{m+1} + 2l)&=2A(n)\\
+ &=2A(2^m+l)\\
+ &=2*2^m\\
+ &=2^{m+1}\\
+\end{aligned} %]]></script>
+    假设 $2^{m-1}+l$是奇数:
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+  左边:
+f(2n+1) &= f \Bigl( 2*(2^m+l)\Bigr)\\
+&=f(2^{m+1} + 2l)\\
+f(2^{m+1} + 2l)&=2A(n)\\
+ &=2A(2^m+l)\\
+ &=2*2^m\\
+ &=2^{m+1}\\
+\end{aligned} %]]></script><br />
+故:$A(n) = 2^m$</li>
+  <li>接下来&lt;font color=red&gt;不基于&lt;/font&gt;刚才的计算, 重新审视一下(1.11)和(1.13).
+ 1.1 如果我们让$f(n)=1$
+       则对于(1.11)
+ <script type="math/tex">% <![CDATA[
+\begin{aligned}
+f(1)&=\alpha \\
+&=1;\\
+可得:\alpha=1\\
+f(2n)&= 2f(n) + \beta\\
+&=2*1+\beta\\
+&=1;\\
+可得:\beta=-1\\
+f(2n+1)&= 2f(n) + \gamma\\
+&=2*1+\gamma\\
+&=1;\\
+可得:\gamma=-1
+\end{aligned} %]]></script>
+      将$f(n)=1, \alpha=1,\beta=-1,\gamma=-1$代入方程(1.13),可得:
+            &lt;font color=red&gt; $A(n) - B(n) - C(n)=1$&lt;/font&gt;
+ 1.2 如果我们让$f(n) = n$
+      则对于(1.11)
+ <script type="math/tex">% <![CDATA[
+\begin{aligned}
+f(1)&=1;\\
+可得:\alpha=1\\
+f(2n)&= 2f(n) + \beta\\
+&=2n+\beta\\
+可得:\beta=0\\
+f(2n+1)&= 2f(n) + \gamma\\
+&=2n+\gamma\\
+可得:\gamma=1
+\end{aligned} %]]></script>
+      将$f(n)=1, \alpha=1,\beta=-1,\gamma=-1$代入方程(1.13),可得:
+            &lt;font color=red&gt; $A(n) + 0*B(n) + C(n)=n$&lt;/font&gt;</li>
+  <li>联立方程组:
+<script type="math/tex">\begin{cases}
+A(n) = 2^m\\
+A(n) - B(n) - C(n)=1\\
+A(n)  + C(n)=n
+\end{cases}</script>
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+可得 C(n) &= n-A(n) \\
+&= n-2^m.\\
+\because n&= 2^m + l \\
+l&=n-2^m\\
+\therefore C(n)&=l
+\end{aligned} %]]></script>
+<script type="math/tex">% <![CDATA[
+\begin{aligned}
+B(n) &= A(n) -c(n) -1\\
+&=2^m -l -1
+\end{aligned} %]]></script></li>
+</ol>
+
+<p>&lt;font color=red&gt;故: (1.14)得证&lt;/font&gt;</p>
+
+
+            <script>
+              $("script[type='math/tex']").replaceWith(function() {
+                var tex = $(this).text();
+                return katex.renderToString(tex, {displayMode: false});
+              });
+
+              $("script[type='math/tex; mode=display']").replaceWith(function() {
+                  var tex = $(this).html();
+                  return katex.renderToString(tex.replace(/%.*/g, ''), {displayMode: true});
+              });
+            </script>
+
+    　　</body>
+</html>

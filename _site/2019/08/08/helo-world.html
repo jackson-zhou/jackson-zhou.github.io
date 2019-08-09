@@ -2,10 +2,10 @@
 <html>
   　　<head>
     　　　　<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    　　　　<title>{{ page.title }}</title>
-            <script src="{{ "/static/jquery-3.4.1.min.js" | prepend: site.baseurl }}"></script>
-            <link rel="stylesheet" href="{{ "/static/katex/katex.css" | prepend: site.baseurl }}">
-            <script src="{{ "/static/katex/katex.js" | prepend: site.baseurl }}"></script>
+    　　　　<title>你好，世界</title>
+            <script src="/static/jquery-3.4.1.min.js"></script>
+            <link rel="stylesheet" href="/static/katex/katex.css">
+            <script src="/static/katex/katex.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
             <script>
                 renderMathInElement(document.body,
@@ -19,7 +19,24 @@
             </script>
     　　</head>
   　　<body>
-    　　　　{{ content }}
+    　　　　<h2>你好，世界</h2>
+<p>我的 $ \int u \frac{dv}{dx}\,dx=uv-\int \frac{du}{dx}v\,dx $ 第一篇文章</p>
+
+<p>我的<script type="math/tex">\int u \frac{dv}{dx}\,dx=uv-\int \frac{du}{dx}v\,dx</script>第一篇文章<br />
+AAA <script type="math/tex">\alpha</script> AA<br />
+AAA $\alpha$ AA<br />
+BB $\alpha$</p>
+
+<script type="math/tex; mode=display">\int u \frac{dv}{dx}\,dx=uv-\int \frac{du}{dx}v\,dx</script>
+
+<p><script type="math/tex">% <![CDATA[
+\begin{aligned}
+\dot{x} & = \sigma(y-x) \\
+\dot{y} & = \rho x - y - xz \\
+\dot{z} & = -\beta z + xy
+\end{aligned} %]]></script></p>
+<p>08 Aug 2019</p>
+
             <script>
               $("script[type='math/tex']").replaceWith(function() {
                 var tex = $(this).text();
