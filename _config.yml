@@ -23,19 +23,7 @@ lan: "cn"
 paginate: 10
 
 highlighter: rouge
-#markdown: kramdown
-markdown: redcarpet
-redcarpet:
-    extensions: [ "hard_wrap",
-    "autolink", 
-    "tables", 
-    "strikethrough", 
-    "superscript",
-    "with_toc_data",
-    "highlight",
-    "prettify",
-    "no_intra_emphasis"]
-    
+markdown: kramdown
 gems: ['jekyll-paginate']
 
 exclude: ['README.md', 'LICENSE', "*.bak"]
