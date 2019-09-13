@@ -218,11 +218,11 @@ public Vote lookForLeader() throws InterruptedException {  
 
 ```
 参考:
-<从Paxos到ZOokeeper分布式一致性原理与实践>
-https://blog.csdn.net/xhh198781/article/details/6619203  zookeeper3.3.3源码分析(二)FastLeader选举算法
-http://itindex.net/detail/51448-zookeeper-fastleader-%E9%80%89%E4%B8%BE  图解zookeeper FastLeader选举算法
-https://blog.csdn.net/a040600145/article/details/53842294  zookeeper源码浅析（二）之Leader选择
-https://blog.csdn.net/zpoison/article/details/80615468 （四）理解zookeeper设计原理及ZAB协议和Leader选举
-https://blog.csdn.net/gaoshan12345678910/article/details/67638657 【分布式】Zookeeper的Leader选举-选举过程介绍比较清晰
-https://www.cnblogs.com/ASPNET2008/p/6421571.html 理解zookeeper选举机制----zookeeper集群
-https://www.jianshu.com/p/357ca7c3b2af ZooKeeper源码解析(6)-Zab实现解析
+[从Paxos到ZOokeeper分布式一致性原理与实践](https://blog.csdn.net/xhh198781/article/details/6619203)<br> 
+[zookeeper3.3.3源码分析(二)FastLeader选举算法](http://itindex.net/detail/51448-zookeeper-fastleader-%E9%80%89%E4%B8%BE)<br>
+[图解zookeeper FastLeader选举算法](https://blog.csdn.net/a040600145/article/details/53842294)<br>
+[zookeeper源码浅析（二）之Leader选择](https://blog.csdn.net/zpoison/article/details/80615468) <br>
+[（四）理解zookeeper设计原理及ZAB协议和Leader选举](https://blog.csdn.net/gaoshan12345678910/article/details/67638657) <br>
+[【分布式】Zookeeper的Leader选举-选举过程介绍比较清晰](https://www.cnblogs.com/ASPNET2008/p/6421571.html) <br>
+[理解zookeeper选举机制----zookeeper集群](https://www.jianshu.com/p/357ca7c3b2af )<br>
+ZooKeeper源码解析(6)-Zab实现解析
