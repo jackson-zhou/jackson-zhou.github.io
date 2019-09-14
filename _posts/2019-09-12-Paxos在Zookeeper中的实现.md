@@ -63,3 +63,11 @@ $$<br>
 <br>
 <br>
 <br>
+## 二，Zookeeper中的实现<br>
+### Leader选举
+用事物ID:ZXID表示一个$\beta$
+用SID表示$B_{dec}$
+用Max(SID)表示MaxVote()$_{dec}$
+
+
+zxid由两部分组成的，高32位是每诞生出一个新leader时需要自增的一个编号，而低32位则是该方法执行（即leader接受处理了一个请求）时自增一个1的，就在这个方法里

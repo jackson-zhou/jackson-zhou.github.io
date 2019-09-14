@@ -1,4 +1,4 @@
-```mermaid
+<div class="mermaid">
     graph TB;
 	loadDatabase-->A(获取最多100个snapshot.xxx文件)
 	A-->B(找到第一个有效的snapshot文件,并反序列化到内存的DataTree)
@@ -7,4 +7,4 @@
 	D-->E(从lastProcessedZxid+1开始找txnLog)
 	E-->F(对每个transaction,在内存replay,同事发送给learners)
 	F-->G(得到当前最新的zxid,初始化完毕)
-```
+</div>

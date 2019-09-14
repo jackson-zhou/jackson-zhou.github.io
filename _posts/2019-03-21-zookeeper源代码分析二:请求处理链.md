@@ -31,13 +31,13 @@ public class LeaderZooKeeperServer extends QuorumZooKeeperServer {
 }
 ```
 从代码中可以看到Leader的消息处理链分别是
-```mermaid
+<div class="mermaid">
     graph LR;
         PrepRequestProcessor-->ProposalRequestProcessor;
         ProposalRequestProcessor-->CommitProcessor;
         CommitProcessor-->ToBeAppliedRequestProcessor;
         ToBeAppliedRequestProcessor-->FinalRequestProcessor;
-```
+</div>
 
 再细看一下
 ```java
@@ -88,7 +88,7 @@ public class ProposalRequestProcessor implements RequestProcessor {
 
 也就是Leader真实的消息处理链其实是:  
 
-```mermaid
+<div class="mermaid">
     graph LR;
         PrepRequestProcessor-->1,ProposalRequestProcessor
         1,ProposalRequestProcessor-->3,CommitProcessor
@@ -96,7 +96,7 @@ public class ProposalRequestProcessor implements RequestProcessor {
         ToBeAppliedRequestProcessor-->4,FinalRequestProcessor
         1,ProposalRequestProcessor-->SyncRequestProcessor
         SyncRequestProcessor-->2,AckRequestProcessor
-```
+</div>
 
 
 到了FinalRequestProcessor时,就直接操作内存数据库了.
