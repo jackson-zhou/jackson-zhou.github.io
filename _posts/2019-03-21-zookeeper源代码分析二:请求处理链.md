@@ -30,14 +30,32 @@ public class LeaderZooKeeperServer extends QuorumZooKeeperServer {
 	...
 }
 ```
+
 从代码中可以看到Leader的消息处理链分别是
+<script src="/static/mermaid.min.js"></script>
+
 <div class="mermaid">
     graph LR;
         PrepRequestProcessor-->ProposalRequestProcessor;
         ProposalRequestProcessor-->CommitProcessor;
         CommitProcessor-->ToBeAppliedRequestProcessor;
         ToBeAppliedRequestProcessor-->FinalRequestProcessor;
-</div>
+</div>  
+
+</script>
+<script>mermaid.initialize({startOnLoad:true});</script>  
+
+<div class="mermaid">
+graph LR;
+A[aa bb]-->B(wo);
+A-->C((我是C));
+B-->D>我是D];
+C-->D;
+D-->E{我是E};
+C-->E;
+2-->E;
+_-->E;
+</div>      
 
 再细看一下
 ```java
@@ -299,3 +317,7 @@ ZooKeeper源码分析：Quorum请求的整个流程(流程交互图)https://blog
 zookeeper源码分析之五服务端(集群leader)处理请求流程https://www.cnblogs.com/davidwang456/p/5004599.html
 
 zookeeper源码浅析（一）交互图https://blog.csdn.net/a040600145/article/details/53842280
+
+
+
+

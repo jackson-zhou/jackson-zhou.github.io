@@ -20,19 +20,19 @@ $$
 \dot{z} & = -\beta z + xy
 \end{aligned}
 $$
-<p>{{ page.date | date_to_string }}</p>
-<script src="/static/mermaid.min.js"></script>
-<script>mermaid.initialize({startOnLoad:true});</script>
-<div class="mermaid">
-graph LR;
-A[aa bb]-->B(wo);
-A-->C((我是C));
-B-->D>我是D];
-C-->D;
-D-->E{我是E};
-C-->E;
-2-->E;
-_-->E;
-</div>
+    <p>{{ page.date | date_to_string }}</p>
+    <script src="/static/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <div class="mermaid">
+    graph LR;
+    A[aa bb]-->B(wo);
+    A-->C((我是C));
+    B-->D>我是D];
+    C-->D;
+    D-->E{我是E};
+    C-->E;
+    2-->E;
+    _-->E;
+    </div>
 
 

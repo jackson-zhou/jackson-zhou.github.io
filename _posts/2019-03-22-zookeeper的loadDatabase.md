@@ -1,3 +1,5 @@
+<script src="/static/mermaid.min.js"></script>
+
 <div class="mermaid">
     graph TB;
 	loadDatabase-->A(获取最多100个snapshot.xxx文件)
