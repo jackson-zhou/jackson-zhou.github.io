@@ -64,10 +64,49 @@ $$<br>
 <br>
 <br>
 ## 二，Zookeeper中的实现<br>
+Zookeeper并没有完全实现Paxos,它实现的是zab. Zab的实现要比Paxos简单非常多
+* 只有Leader才能发起Proposal.
+* 其它Follow收到数据包之后无条件回复Ack.
+* 超过一半的Ack，就认为该提案生效
+
 ### Leader选举
 用事物ID:ZXID表示一个$\beta$
 用SID表示$B_{dec}$
 用Max(SID)表示MaxVote()$_{dec}$
 
+### 修改数据
+每一个修改的命令，zookeeper都会给它分配一个新的zxid
+代码在
+```java
+//apache-zookeeper-3.5.5/zookeeper-server/src/main/java/org/apache/zookeeper/server/PrepRequestProcessor.java
+public class PrepRequestProcessor extends ZooKeeperCriticalThread implements
+        RequestProcessor {
+   protected void pRequest(Request request) throws RequestProcessorException {
+        ...
+            switch (request.type) {
+                ....
+                case OpCode.setData:
+                    ..              
+                    pRequest2Txn(request.type, zks.getNextZxid(), request, setDataRequest, true);
+                    break;
+    ...
+}
+```
 
-zxid由两部分组成的，高32位是每诞生出一个新leader时需要自增的一个编号，而低32位则是该方法执行（即leader接受处理了一个请求）时自增一个1的，就在这个方法里
+```java
+/apache-zookeeper-3.5.5/zookeeper-server/src/main/java/org/apache/zookeeper/server/quorum
+    //可以看到关键的参数是zxid
+     synchronized public void processAck(long sid, long zxid, SocketAddress followerAddr) {        
+        ....
+        if (lastCommitted >= zxid) {//收到之前的消息，忽略就好了
+            ....
+            return;
+        }
+        //通过zxid获得投票
+        Proposal p = outstandingProposals.get(zxid);
+        ......
+        //等待Ack过半，就认可修改生效
+        boolean hasCommitted = tryToCommit(p, zxid, followerAddr);
+    }
+    
+```
