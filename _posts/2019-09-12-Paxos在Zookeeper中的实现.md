@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Paxos在Zookeeper中的实现
+title: Paxos的理解，以及在Zookeeper中的实现
 ---
 ## 一，Paxos的理解<br>
 #### 1， The Part-Time Parliament<br>
