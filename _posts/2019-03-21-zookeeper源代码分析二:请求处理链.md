@@ -40,22 +40,7 @@ public class LeaderZooKeeperServer extends QuorumZooKeeperServer {
         ProposalRequestProcessor-->CommitProcessor;
         CommitProcessor-->ToBeAppliedRequestProcessor;
         ToBeAppliedRequestProcessor-->FinalRequestProcessor;
-</div>  
-
-</script>
-<script>mermaid.initialize({startOnLoad:true});</script>  
-
-<div class="mermaid">
-graph LR;
-A[aa bb]-->B(wo);
-A-->C((我是C));
-B-->D>我是D];
-C-->D;
-D-->E{我是E};
-C-->E;
-2-->E;
-_-->E;
-</div>      
+</div>    
 
 再细看一下
 ```java
@@ -310,13 +295,11 @@ public class Follower extends Learner{
 也就是对于Leader发起的投票PROPOSAL, 它会立即返回ack.
 
 参考资料:
-//参考深入浅出Zookeeper之七分布式CREATE事务处理https://iwinit.iteye.com/blog/1777109
-一篇文章看懂ZooKeeper内部原理https://blog.csdn.net/taurus_7c/article/details/81143830
-
-ZooKeeper源码分析：Quorum请求的整个流程(流程交互图)https://blog.csdn.net/jeff_fangji/article/details/42988439
-zookeeper源码分析之五服务端(集群leader)处理请求流程https://www.cnblogs.com/davidwang456/p/5004599.html
-
-zookeeper源码浅析（一）交互图https://blog.csdn.net/a040600145/article/details/53842280
+[参考深入浅出Zookeeper之七分布式CREATE事务处理](https://iwinit.iteye.com/blog/1777109)<br>
+[一篇文章看懂ZooKeeper内部原理](https://blog.csdn.net/taurus_7c/article/details/81143830)<br>
+[ZooKeeper源码分析：Quorum请求的整个流程(流程交互图)](https://blog.csdn.net/jeff_fangji/article/details/42988439)<br>
+[zookeeper源码分析之五服务端(集群leader)处理请求流程](https://www.cnblogs.com/davidwang456/p/5004599.html)<br>
+[zookeeper源码浅析（一）交互图](https://blog.csdn.net/a040600145/article/details/53842280)<br>
 
 
 
