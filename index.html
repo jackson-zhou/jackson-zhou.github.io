@@ -1,47 +1,48 @@
 ---
 layout: default
 ---
-{% assign trans = site.data.values[site.lan] %}
-{% for post in paginator.posts %}
-<div class="well article">
-
-    <span class="post-date">
-        <!--
-        {% assign d = post.date | date: "%d" | plus:'0' %}
-        {{ post.date | date: "%B" }}
-        {% case d %}
-        {% when 1 or 21 or 31 %}{{ d }}st,
-        {% when 2 or 22 %}{{ d }}nd,
-        {% when 3 or 23 %}{{ d }}rd,
-        {% else %}{{ d }}th,
-        {% endcase %}
-        {{ post.date | date: "%Y" }}
-        -->
-        {% assign date_format = site.date_format.title %}
-        {{ post.date | date: date_format }}
-    </span>
-    
-    <h2>
-        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-    </h2>
-    
-    <div class="post-description">
-        {{ post.description }}
-    </div>
-    
-</div>
-{% endfor %}
-
-<div class="pagination">
-  {% if paginator.previous_page %}
-      {% if paginator.previous_page == 1 %}
-        <a class="btn btn-default" href="{{ site.baseurl}}/index.html" class="previous">Newer</a>
-      {% else %}
-        <a class="btn btn-default" href="{{ site.baseurl}}/page{{ paginator.previous_page }}" class="previous">Newer</a>
-      {% endif %}
+<div class="col-md-9">
+  {% for post in paginator.posts %}
+  <h3 class="title"><a href="{{ post.url }}">{{ post.title }}</a><time class="small">{{ post.date | date: "%Y.%m.%d" }}</time></h3>
+  {% if post.content contains "<!-- more -->" %}
+  {{ post.content | split:'<!-- more -->' | first }}
+  {% else %}
+  {{ post.content | strip_html | truncate:50 }}
   {% endif %}
-  <span class="page_number ">{{ trans.page }}: {{ paginator.page }} of {{ paginator.total_pages }}</span>
-  {% if paginator.next_page %}
-    <a class="btn btn-default" href="{{ site.baseurl}}/page{{ paginator.next_page }}" class="next">Older</a>
-  {% endif %}
+  
+    {% if post.content contains "<!-- more -->" %}
+    <a class="btn btn-primary btn-sm pull-right" href="{{ post.url }}"><span class="readmore">Read More &raquo; </span></a>
+    {% endif %} 
+ 
+  {% endfor %}
+
+  <!-- Pagination links -->
+  <div class="pull-right">
+    {% if paginator.previous_page %}
+    {% if paginator.previous_page == 1 %}
+    <a class="btn btn-primary btn-sm" href="/">Home</a>
+    <a class="btn btn-primary btn-sm" href="/">&laquo; Prev</a>
+    {% else %}
+    <a class="btn btn-primary btn-sm" href="/">Home</a>
+    <a class="btn btn-primary btn-sm" href="/page{{paginator.previous_page}}/">&laquo; Prev</a>
+    {% endif %}
+    {% else %}
+    <a class="btn btn-primary btn-sm disabled" href="/">Home</a>
+    <a class="btn btn-primary btn-sm disabled">&laquo; Prev</a>
+    {% endif %}
+    <a class="btn btn-primary btn-sm disabled">Page: {{paginator.page}} of {{paginator.total_pages}}</a></span>
+    {% if paginator.next_page %}
+    <a class="btn btn-primary btn-sm" href="/page{{paginator.next_page}}/">Next &raquo;</a>
+    <a class="btn btn-primary btn-sm" href="/page{{paginator.total_pages}}/">Last</a>
+    {% else if paginator.page == paginator.total_pages %}
+    <a class="btn btn-primary btn-sm disabled">Next &raquo;</a>
+    <a class="btn btn-primary btn-sm disabled">Last</a>
+    {% endif %}
+  </div>
 </div>
+<aside class="col-md-3 visible-lg visible-md">
+  {% include categories.html %}
+  {% include recently_posts.html %}
+  {% include recently_comments.html %}
+  {% include blogroll.html %}
+</aside>
