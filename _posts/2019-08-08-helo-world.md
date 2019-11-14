@@ -1,6 +1,7 @@
 ---
 layout: default
 title: 你好，世界
+categories: [测试]
 ---
 <h2>{{ page.title }}</h2>
 <p>我的 $ \int u \frac{dv}{dx}\,dx=uv-\int \frac{du}{dx}v\,dx $ 第一篇文章</p>

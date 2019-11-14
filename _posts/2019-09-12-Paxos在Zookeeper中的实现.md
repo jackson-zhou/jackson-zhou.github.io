@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Paxos的理解，以及在Zookeeper中的实现
+categories: [源码分析,分布式,java]
 ---
 ## 一，Paxos的理解<br>
 #### 1， The Part-Time Parliament<br>

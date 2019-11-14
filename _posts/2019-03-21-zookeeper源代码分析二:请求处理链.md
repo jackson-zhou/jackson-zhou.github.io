@@ -1,3 +1,7 @@
+---
+layout: default
+categories: [源码分析,分布式,java]
+---
 本文打算分析一下zookeeper读写消息的请求处理链, 附带分析一下zookeeper服务器的几个角色(Leader/Follower/Observer).
 
 让我们从[官网](https://zookeeper.apache.org/doc/current/zookeeperOver.html)上的一张图,一段描述开始:

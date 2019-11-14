@@ -1,3 +1,7 @@
+---
+layout: default
+categories: [源码分析,分布式,java]
+---
 上文提到, Zookeeper服务端的角色分为Leader和非Leader,包括Follower,Observer. 对于所有的写请求则都会转交给Leader来处理.
 那么就面临一个问题, 谁是Leader?
 
