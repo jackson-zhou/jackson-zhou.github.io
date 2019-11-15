@@ -16,12 +16,6 @@ layout: default
  
   {% endfor %}
 
-  <aside class="col-md-3 visible-lg visible-md">
-    {% include categories.html %}
-    {% include recently_posts.html %}
-    {% include recently_comments.html %}
-    {% include blogroll.html %}
-  </aside>
   <!-- Pagination links -->
   <div class="pull-right">
     {% if paginator.previous_page %}
@@ -46,3 +40,10 @@ layout: default
     {% endif %}
   </div>
 </div>
+
+<aside class="col-md-3 visible-lg visible-md">
+  {% include categories.html %}
+  {% include recently_posts.html %}
+  {% include recently_comments.html %}
+  {% include blogroll.html %}
+</aside>

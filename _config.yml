@@ -1,7 +1,7 @@
 # Site settings
 title: "与其临渊羡鱼，不如退而结网！"
 url: "jacksonzhou.cn/"
-paginate: 5
+paginate: 10
 author:
     name: jackson.zhou
     github: jackson-zhou
