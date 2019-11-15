@@ -21,6 +21,26 @@
   <link href="{{ site.rss_path }}" type="application/rss+xml" rel="alternate" title="{{ site.title }} RSS Feed">
   <link href="{{ site.atom_path }}" type="application/atom+xml" rel="alternate" title="{{ site.title }} ATOM Feed">
   -->
+  <link rel="stylesheet" href="{{ "/assets/katex/katex.min.css" | prepend: site.baseurl }}">
+  <script src="{{ "/assets/katex/katex.min.js" | prepend: site.baseurl }}"></script>
+  <script src="{{ "/assets/katex/contrib/auto-render.min.js" | prepend: site.baseurl }}"
+  crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body,
+            {
+                delimiters: [
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false }
+                ]
+            }
+        );
+
+    });
+  </script>
+
+
+
   {% if site.webmaster.baidu.verify %}<meta name="baidu-site-verification" content="{{ site.webmaster.baidu.verify }}" />{% endif %}
   {% if site.webmaster.google.verify %}<meta name="google-site-verification" content="{{ site.webmaster.google.verify }}" />{% endif %}
   {% if site.webmaster.bing.verify %}<meta name="msvalidate.01" content="{{ site.webmaster.bing.verify }}" />{% endif %}
