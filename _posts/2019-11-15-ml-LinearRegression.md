@@ -150,27 +150,8 @@ int main() {
 这个***<font color="#ADADAD">还是挺高的</font>***说的好没有底气啊。    
 专业的说法是要引入**二分类代价矩阵**， 又叫**混淆矩阵(Confusion Matrix)**。    
   
-<table>    
-   <tr>    
-      <td rowspan="2" colspan="2">混淆矩阵</td>    
-      <td bgcolor="green" colspan="2">真实值</td>    
-   </tr>    
-   <tr>    
-      <td width = 150 bgcolor="#00BB00" >好瓜（Positive）</td>    
-      <td width = 150 bgcolor="#00BB00" >孬瓜(Negative)</td>      
-   </tr>    
-   <tr>    
-      <td width = 1 rowspan="2" bgcolor="#977C00">预 测 值</td>    
-      <td  width = 150  bgcolor="#D9B300">好瓜（Positive）</td>    
-      <td>正确预测好瓜(TP)<p/> 8个</td>    
-      <td>错认好瓜(FN) <p/>1个</td>    
-   </tr>    
-    <tr>    
-      <td  width = 150  bgcolor="#D9B300">孬瓜 (Negative）</td>    
-      <td>错认孬瓜(FP) <p/>1个</td>    
-      <td>正确预测孬瓜(TN)<p/> 7个</td>    
-   </tr>    
-</table>    
+
+<img src='/static/image/ml/2019-11-15-confusionMatrix.png' /> 
 
 查准率:
 
