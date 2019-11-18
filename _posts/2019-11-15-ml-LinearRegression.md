@@ -148,8 +148,8 @@ int main() {
 ###  怎么度量结果？
 正确率接近90%， ***<font color="#ADADAD">还是挺高的</font>***。    
 这个***<font color="#ADADAD">还是挺高的</font>***说的好没有底气啊。    
-专业的说法是要引入**二分类代价矩阵**， 又叫**混淆矩阵(Confusion Matrix)**
-
+专业的说法是要引入**二分类代价矩阵**， 又叫**混淆矩阵(Confusion Matrix)**。    
+  
 <table>
    <tr>
       <td rowspan="2" colspan="2">混淆矩阵</td>
