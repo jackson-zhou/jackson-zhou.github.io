@@ -44,7 +44,7 @@ int main() {
     //通过解析sklearn保存的dot文件来生成一棵决策树
     DNode* decisionTree = ParseDecisionTree("/tmp/DecisionTree.dot");
 
-    vector<vector<float>> X = {{5.1, 3.5, 1.4, 0.2},
+    vector<vector<float>> X = { {5.1, 3.5, 1.4, 0.2},
                                   {4.9, 3.,  1.4, 0.2},
                                   ....};
     
