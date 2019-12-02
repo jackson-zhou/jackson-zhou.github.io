@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 机器学习----决策树模型
+title: 机器学习笔记----决策树模型
 categories: [机器学习]
 ---
 <center><font size="14"> 决策树</font></center>

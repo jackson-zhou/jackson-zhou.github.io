@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 机器学习----从回归谈起
+title: 机器学习笔记----从回归谈起
 categories: [机器学习]
 ---
 <center><font size="14"> 机器学习----从回归谈起</font></center>
