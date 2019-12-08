@@ -8,7 +8,7 @@ categories: [源码分析,分布式,java]
 
 我们可以从这个角度入手, 去看看zookeeper的源代码, 看看它是怎么实现的.本次阅读的代码基于最新稳定版3.4.12:
 [官网](https://zookeeper.apache.org/doc/current/zookeeperOver.html)在很靠前的位置介绍了这棵树:
-![](http://jacksonzhou.top/wp-content/uploads/2019/03/19c0614ff4b52173a466c936034e5458.png)
+<img src='/static/image/code_analyze/19c0614ff4b52173a466c936034e5458.png' />
 
 这棵树的代码在:
 ```java

@@ -5,8 +5,7 @@ categories: [源码分析,分布式,java]
 本文打算分析一下zookeeper读写消息的请求处理链, 附带分析一下zookeeper服务器的几个角色(Leader/Follower/Observer).
 
 让我们从[官网](https://zookeeper.apache.org/doc/current/zookeeperOver.html)上的一张图,一段描述开始:
-![](http://jacksonzhou.top/wp-content/uploads/2019/03/5ad5bd279b88825507f70087b321f33a.png)
-
+<img src='/static/image/code_analyze/5ad5bd279b88825507f70087b321f33a.png'/>
 <p></p><p></p><p></p>
 从官网的描述可知, 不管你连接zookeeper集群的哪台服务器, 所有的写请求都会被转发到Leader服务器,并且在一个集群中Leader只有一个.
 这就是我们分析请求链很好的一个起点. <font color="#FF1122">看Zk的写流程消息处理链只需要看Leader的就够了</font>.  
@@ -36,7 +35,7 @@ public class LeaderZooKeeperServer extends QuorumZooKeeperServer {
 ```
 
 从代码中可以看到Leader的消息处理链分别是
-<script src="/static/mermaid.min.js"></script>
+<script src="/assets/mermaid.min.js"></script>
 
 <div class="mermaid">
     graph LR;

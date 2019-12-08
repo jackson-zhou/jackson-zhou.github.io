@@ -22,7 +22,7 @@ $$
 \end{aligned}
 $$
     <p>{{ page.date | date_to_string }}</p>
-    <script src="/static/mermaid.min.js"></script>
+    <script src="/assets/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
     <div class="mermaid">
     graph LR;

@@ -2,7 +2,7 @@
 layout: default
 categories: [源码分析,分布式,java]
 ---
-<script src="/static/mermaid.min.js"></script>
+<script src="/assets/mermaid.min.js"></script>
 
 <div class="mermaid">
     graph TB;

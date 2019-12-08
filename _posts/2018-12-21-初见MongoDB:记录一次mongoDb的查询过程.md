@@ -1,7 +1,7 @@
 ---
 layout: default
 categories: [源码分析,MongoDB]
----   
+---
 本文简单对比了MongoDb与关系型数据库的基本概念. 并分别使用脚本, 聚合, Mapreduce来完成一次查询统计任务.
 
 ### 查询任务
