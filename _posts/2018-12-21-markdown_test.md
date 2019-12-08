@@ -1,7 +1,7 @@
 ---
 layout: default
 categories: [测试]
----   
+---
 # 入口函数 
 `sspShow`  **show/show.go**
 [plantuml]

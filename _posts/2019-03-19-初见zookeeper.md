@@ -1,7 +1,7 @@
 ---
 layout: default
 categories: [源码分析，java]
----   
+---
 作为一个资深C++程序员, 第一次用java写zookeeper客户端程序, 我完全被震撼到了.
 用Eclipse创建Maven工程,规范性地填写你的代码组织(groupId),还有工程名称(artifactId). 很容易地创建了一个helloworld的java工程. 从maven仓库(https://mvnrepository.com/) 查找zookeeper的索引信息往pom.xml文件里一贴. eclipse一阵忙乎,所有的依赖环境就自动解决了.
 ```xml 
