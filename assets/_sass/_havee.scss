@@ -220,7 +220,7 @@ blockquote {
   border-radius: 4px;
   box-shadow: 0 0 3px rgba($base03, $alpha);
   &:before, &:after {
-    content: "\201C";
+    //content: "\201C";
     position: absolute;
     top: 0;
     left: 0;

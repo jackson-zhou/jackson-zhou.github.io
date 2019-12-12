@@ -2,19 +2,10 @@
 layout: default
 categories: [源码分析,分布式,java]
 ---
+
 <script src="/assets/mermaid.min.js"></script>
-<script>
-	document.onreadystatechange = function(){
-		if(document.readyState === 'complete') addSvg()
-	}
-	function addSvg(){
-		var insertSvg = function(svgCode, bindFunctions){
-			document.querySelector("#graphDiv").innerHTML = svgCode;
-		};
-		var graphDefinition = 'graph TB\na-->b';
-		var graph = mermaid.render('graphDiv', graphDefinition, insertSvg);
-	}
-</script>
+
+<script>mermaid.initialize({startOnLoad:true});</script>  
 <div class="mermaid">
     graph TB;
 	loadDatabase-->A(获取最多100个snapshot.xxx文件)
