@@ -2,6 +2,4 @@ _site
 .sass-cache/
 .DS_Store
 .jekyll-cache/
-Gemfile
-Gemfile.lock
 Rakefile
