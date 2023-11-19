@@ -12,7 +12,7 @@ kramdown:
 permalink: /:categories/:year-:month/:title.html
 gems: [jekyll-paginate]
 exclude: [Gemfile, Gemfile.lock, qrsync, Rakefile, docker-compose.yml]
-plugins: [jekyll-paginate]
+plugins: [jekyll-paginate,kramdown-plantuml]
 assets_path: /assets
 sass:
     sass_dir: assets/_sass
@@ -46,3 +46,12 @@ webmaster:
         verify:
     bing:
         verify:
+
+plantuml-processor:
+    mode: default  # mode value 'pre-fetch' for fetching image at building stage
+    css:
+      class: plantuml
+    syntax:
+      code: 'plantuml!'
+      custom: ['@startuml', '@enduml']
+    src: http://www.plantuml.com/plantuml/svg/

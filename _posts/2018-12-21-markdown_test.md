@@ -4,13 +4,14 @@ categories: [测试]
 ---
 # 入口函数 
 `sspShow`  **show/show.go**
-[plantuml]
+```plantuml
 Alice -> Bob: Authentication Request
 Bob --> Alice: Authentication Response
 
 Alice -> Bob: Another authentication Request
 Alice <-- Bob: another authentication Response<p>
-[/plantuml]
+```
+
 ```javascript
 function add(x, y) {
   return x + y
@@ -104,16 +105,4 @@ gantt
 			-比对单个文件主要修改位置
 			-插件开发格式要求
 		-测试 6m
-```
-
-```plantuml
-<p>
-[plantuml]<p>
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
-<p>
-[/plantuml]
 ```
